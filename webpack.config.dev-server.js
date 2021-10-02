@@ -1,3 +1,4 @@
+// For front-end dev server
 module.exports = {
   mode: "development",
   entry: __dirname + "/client/src/index.js",
@@ -20,5 +21,15 @@ module.exports = {
     path: __dirname + "/client/dist",
   },
   devtool: "source-map",
-  watch: true,
+  devServer: {
+    static: __dirname + "/client/dist",
+    compress: true,
+    open: true,
+    // To open with your browser of choice comment line above and uncomment lines below
+    // open: {
+    //   app: {
+    //     name: 'Brave Browser',
+    //   },
+    // },
+  },
 };
