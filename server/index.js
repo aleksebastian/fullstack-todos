@@ -21,10 +21,5 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
-// Sample route for quick checking of server connection in client
-app.get("/hello", (req, res) =>
-  res.status(200).send("Hello there from the server!")
-);
-
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server listening in port ${port}`));
