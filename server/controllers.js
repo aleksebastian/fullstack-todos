@@ -41,7 +41,7 @@ module.exports = {
     const newThing = req.body.newThing;
     try {
       let updateThing = await db.update.something(oldThing, newThing);
-      if (updateThing.something === newThing) {
+      if (updateThing.something === newThing || updateThing[0] === 1) {
         res.sendStatus(200);
       } else {
         res.sendStatus(400);
@@ -55,7 +55,9 @@ module.exports = {
     const thingToDelete = req.body.thingToDelete;
     try {
       let deleteThing = await db.delete.something(thingToDelete);
-      if (deleteThing.deletedCount) {
+      console.log("deleteThing: ", deleteThing);
+
+      if (deleteThing.deletedCount || deleteThing === 1) {
         res.sendStatus(200);
       } else {
         res.sendStatus(404);
