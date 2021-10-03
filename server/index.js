@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+var cors = require("cors");
 const path = require("path");
 const router = require("./routes.js");
 const app = express();
@@ -9,6 +10,13 @@ if (process.env.MODE === "dev") {
   const morgan = require("morgan");
   app.use(morgan("dev"));
 }
+
+// var corsOptions = {
+//   origin: 'http://example.com',
+//   optionsSuccessStatus: 200
+// }
+// Allowing ALL CORS requests is not recommended for production, set your origin(s).
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
