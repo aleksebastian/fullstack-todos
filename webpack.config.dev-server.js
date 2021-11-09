@@ -14,6 +14,10 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
   output: {
@@ -28,7 +32,7 @@ module.exports = {
     // To open with your browser of choice comment line above and uncomment lines below
     // open: {
     //   app: {
-    //     name: 'Brave Browser',
+    //     name: "Brave Browser",
     //   },
     // },
   },
