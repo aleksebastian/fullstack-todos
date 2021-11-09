@@ -28,3 +28,9 @@
 
 1. Environment variables are required for postgres. For quick hacking follow the example.env file to create your own .env file and fill out the postgres environment variables.
 1. Once the postgres environment variables are set, create the database with `npm run createSqlDb`
+
+### For production
+
+Set `MODE` environment variable to `prod`
+Build production bundle files (js, gzip, and br) with `npm run build`
+Start production server with `npm run start`
