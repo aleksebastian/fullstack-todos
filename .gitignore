@@ -1,4 +1,8 @@
 node_modules
-bundle*
 .DS_Store
 .env
+
+# Generated at compile time
+bundle*
+main*
+
