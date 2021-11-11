@@ -1,6 +1,13 @@
 import React from "react";
 import styles from "./app.module.css";
 
-const App = (props) => <div className={styles.header}>Hello there!</div>;
+import Todos from "./components/Todos.jsx";
+
+const App = (props) => (
+  <div>
+    <p className={styles.header}>Fullstack To-do</p>
+    <Todos />
+  </div>
+);
 
 export default App;
