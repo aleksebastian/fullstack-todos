@@ -13,7 +13,12 @@ const sequelize = new Sequelize({
 });
 
 const Thing = sequelize.define("things", {
-  something: {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    allowNull: false,
+  },
+  name: {
     type: DataTypes.STRING,
     allowNull: false,
   },

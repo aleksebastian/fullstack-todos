@@ -6,10 +6,11 @@ async function connect() {
   await mongoose.connect("mongodb://localhost/fsbp");
 }
 
-const sampleSchema = mongoose.Schema({
-  something: String,
+const thingSchema = mongoose.Schema({
+  id: Number,
+  name: String,
 });
 
-const Sample = mongoose.model("Sample", sampleSchema);
+const Thing = mongoose.model("Thing", thingSchema);
 
-module.exports = Sample;
+module.exports = Thing;
