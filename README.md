@@ -31,6 +31,6 @@
 
 ### For production
 
-Set `MODE` environment variable to `prod`
-Build production bundle files (js, gzip, and br) with `npm run build`
-Start production server with `npm run start`
+1. Set `MODE` environment variable to `prod`
+1. Build production bundle files (js, gzip, and br) with `npm run build`
+1. Start production server with `npm run start`
