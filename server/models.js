@@ -1,56 +1,49 @@
 // comment out import for DB that will not be used
-// const noSqlDb = require("../database/mongoDb/index.js");
-const sqlDb = require("../database/postgres/index.js");
+const noSqlDb = require("../database/mongoDb/index.js");
+// const sqlDb = require("../database/postgres/index.js");
 
-// uncomment for noSQL
-// module.exports = {
-//   create: {
-//     something: async (thingToSave) =>
-//       await noSqlDb.create({ something: thingToSave }),
-//   },
-//   read: {
-//     something: async (thing) => await noSqlDb.find({ something: thing }),
-//     somethings: async () => await noSqlDb.find(),
-//   },
-//   update: {
-//     something: async (oldThing, newThing) =>
-//       await noSqlDb.findOneAndUpdate(
-//         { something: oldThing },
-//         { something: newThing },
-//         { new: true }
-//       ),
-//   },
-//   delete: {
-//     something: async (thingToDelete) =>
-//       await noSqlDb.deleteOne({ something: thingToDelete }),
-//   },
-// };
-
-// uncomment for SQL
+// uncomment below through line 27 for noSQL
 module.exports = {
   create: {
-    something: async (thingToSave) =>
-      await sqlDb.create({ something: thingToSave }),
+    thing: async (thingToSave) => await noSqlDb.create(thingToSave),
   },
   read: {
-    something: async (thing) => await sqlDb.findOne({ something: thing }),
-    somethings: async () => await sqlDb.findAll(),
+    thing: async (thing) => await noSqlDb.find({ id: thing.id }),
+    things: async () => await noSqlDb.find(),
   },
   update: {
-    something: async (oldThing, newThing) =>
-      await sqlDb.update(
-        {
-          something: newThing,
-        },
-        {
-          where: {
-            something: oldThing,
-          },
-        }
-      ),
+    thing: async (newThing) =>
+      await noSqlDb.findOneAndUpdate({ id: newThing.id }, newThing, {
+        new: true,
+      }),
   },
   delete: {
-    something: async (thingToDelete) =>
-      await sqlDb.destroy({ where: { something: thingToDelete } }),
+    thing: async (thingToDelete) =>
+      await noSqlDb.deleteOne({ id: thingToDelete.id }),
   },
 };
+
+// uncomment below for SQL
+// module.exports = {
+//   create: {
+//     thing: async (thingToSave) => await sqlDb.create(thingToSave),
+//   },
+//   read: {
+//     thing: async (id) => await sqlDb.findOne({ id: id }),
+//     things: async () => await sqlDb.findAll(),
+//   },
+//   update: {
+//     thing: async (newThing) =>
+//       await sqlDb.update(newThing, {
+//         where: {
+//           id: newThing.id,
+//         },
+//       }),
+//   },
+//   delete: {
+//     thing: async (thingToDelete) =>
+//       await sqlDb.destroy({
+//         where: { id: thingToDelete.id },
+//       }),
+//   },
+// };

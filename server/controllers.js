@@ -1,12 +1,14 @@
 const db = require("./models");
 
+// conditionals with || (OR) before res.send have || (OR) to accomodate for sql and noSql db use
+
 module.exports = {
   error: (req, res) => res.sendStatus(400),
   get: async (req, res) => {
     const { thingToGet } = req.params;
     if (!thingToGet) {
       try {
-        const things = await db.read.somethings();
+        const things = await db.read.things();
         res.json(things);
       } catch (err) {
         console.error(err);
@@ -14,7 +16,7 @@ module.exports = {
       }
     } else {
       try {
-        const thing = await db.read.something(thingToGet);
+        const thing = await db.read.thing(thingToGet);
         res.json(thing);
       } catch (err) {
         console.error(err);
@@ -23,12 +25,12 @@ module.exports = {
     }
   },
   post: async (req, res) => {
-    const thingToSave = req.body.thingToSave;
+    const thingToSave = req.body;
     if (!thingToSave) {
       res.sendStatus(400);
     } else {
       try {
-        await db.create.something(thingToSave);
+        await db.create.thing(thingToSave);
         res.sendStatus(201);
       } catch (err) {
         console.error("Unable to save thing: ", err);
@@ -37,11 +39,10 @@ module.exports = {
     }
   },
   put: async (req, res) => {
-    const oldThing = req.body.oldThing;
-    const newThing = req.body.newThing;
+    const updatedThing = req.body;
     try {
-      let updateThing = await db.update.something(oldThing, newThing);
-      if (updateThing.something === newThing || updateThing[0] === 1) {
+      let updateThing = await db.update.thing(updatedThing);
+      if (updateThing.name === updatedThing.name || updateThing[0] === 1) {
         res.sendStatus(200);
       } else {
         res.sendStatus(400);
@@ -52,12 +53,10 @@ module.exports = {
     }
   },
   delete: async (req, res) => {
-    const thingToDelete = req.body.thingToDelete;
+    const thingToDelete = req.body;
     try {
-      let deleteThing = await db.delete.something(thingToDelete);
-      console.log("deleteThing: ", deleteThing);
-
-      if (deleteThing.deletedCount || deleteThing === 1) {
+      let deleteThing = await db.delete.thing(thingToDelete);
+      if (deleteThing === 1 || deleteThing.deletedCount === 1) {
         res.sendStatus(200);
       } else {
         res.sendStatus(404);
