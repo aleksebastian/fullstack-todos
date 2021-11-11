@@ -9,6 +9,7 @@ async function connect() {
 const thingSchema = mongoose.Schema({
   id: Number,
   name: String,
+  done: Boolean,
 });
 
 const Thing = mongoose.model("Thing", thingSchema);

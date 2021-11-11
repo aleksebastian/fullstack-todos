@@ -22,6 +22,10 @@ const Thing = sequelize.define("things", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  done: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+  },
 });
 
 const sync = async () => await Thing.sync();
