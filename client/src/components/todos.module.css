@@ -1,0 +1,32 @@
+.todo {
+  font-size: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.submit {
+  width: 75%;
+  cursor: pointer;
+  color: whitesmoke;
+  background-color: rgb(10, 10, 29);
+  border-radius: 5px;
+  border: solid white 1px;
+  height: 1.5rem;
+}
+
+.input {
+  height: 1.5em;
+  font-size: 1em;
+  background-color: rgb(27, 27, 27);
+  color: whitesmoke;
+  border-radius: 5px;
+  border: solid white 1px;
+}
